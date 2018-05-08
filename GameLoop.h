@@ -1,23 +1,22 @@
 #ifndef GAMELOOP_H
 #define GAMELOOP_H
 
-#include "Utils.h"
 #include <stdio.h>
+#include "Window.h"
+#include "GameState.h"
+#include "MainGameState.h"
 
-namespace FRAMEWORK {
-	class GameLoop {
+class GameLoop {
+public:
+	GameLoop();
+	GameLoop(int maxUpdatesPerSecond);
+	~GameLoop();
+	void run();
+private:
+	Window* window;
+	GameState* state;
+	bool running;
+	int maxUpdatesPerSecond;
+};
 
-	public:
-		GameLoop();
-		GameLoop(int);
-		~GameLoop();
-		bool isRunning() { return this->running; }
-		void exit() { this->running = false; }
-
-	private:
-		bool running;
-		float logicUpdatesPerSecond;
-	};
-
-}
 #endif
